@@ -7,13 +7,12 @@ export class CustomerController {
   constructor(private readonly appService: CustomerService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getHello(): CustomerDto[] {
+    return this.appService.getAll();
   }
 
   @Post()
   postHello(@Body() dto:CustomerDto): string {
-    console.log(dto);
-    return this.appService.postHello();
+    return this.appService.saveCustomer(dto);
   }
 }
