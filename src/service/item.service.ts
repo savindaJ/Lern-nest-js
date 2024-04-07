@@ -42,4 +42,12 @@ export class ItemService {
                 id: id
             }).exec();
     }
+
+    async getAllItemIds(): Promise<string[]> {
+        // Find all items and project only the 'id' field
+        const items = await this.itemModel.find({}, 'id').exec();
+        console.log(items);
+        // Extract and return only the ids
+        return items.map(item => item.id);
+    }
 }

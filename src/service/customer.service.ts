@@ -49,4 +49,12 @@ export class CustomerService {
         name: name
       }).exec();
   }
+
+  async getAllCustomerId(): Promise<string[]> {
+    // Find all customers and project only the 'name' field
+    const customers = await this.catModel.find({}, 'id').exec();
+    console.log(customers);
+    // Extract and return only the names
+    return customers.map(customer => customer.id);
+  }
 }

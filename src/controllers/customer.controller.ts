@@ -33,9 +33,9 @@ export class CustomerController {
     return Promise.resolve('Deleted');
   }
 
-  @Get('byname')
-  getHelloByName(@Query('name') name: string): Promise<Customer[]> {
-    console.log(name);
-    return this.appService.getByName(name);
+  @Get('/get/ids')
+  getHelloByName(): Promise<string[]> {
+    return this.appService.getAllCustomerId();
+    // return Promise.resolve(['1', '2', '3']);
   }
 }

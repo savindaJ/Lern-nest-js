@@ -36,4 +36,9 @@ export class ItemController {
     console.log(id);
     return this.itemService.delete(id);
   }
+
+  @Get('/get/ids')
+  getClassName_singularIds() : Promise<string[]> {
+    return this.itemService.getAllItemIds();
+  }
 }
