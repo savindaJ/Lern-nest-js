@@ -22,9 +22,11 @@ export class CustomerService {
   }
 
   async update(createCatDto: CustomerDto): Promise<Customer> {
-    console.log(createCatDto);
-    const createdCat = new this.catModel(createCatDto);
-    return createdCat.save();
+      const exitingCustomer = await this.catModel.findOne({id: createCatDto.id});
+      exitingCustomer.name = createCatDto.name;
+      exitingCustomer.address = createCatDto.address;
+      exitingCustomer.salary = createCatDto.salary;
+      return exitingCustomer.save();
   }
 
   async delete(id: string) {

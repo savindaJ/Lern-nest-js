@@ -22,9 +22,11 @@ export class ItemService {
     }
 
     async update(createItemDto: ItemDto): Promise<Item> {
-        console.log(createItemDto);
-        const createdItem = new this.itemModel(createItemDto);
-        return createdItem.save();
+        const exitingItem = await this.itemModel.findOne({id: createItemDto.id});
+        exitingItem.description = createItemDto.description;
+        exitingItem.price = createItemDto.price;
+        exitingItem.quantity = createItemDto.quantity;
+        return exitingItem.save();
     }
 
     async delete(id: string) {
